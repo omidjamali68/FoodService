@@ -7,13 +7,18 @@ namespace Food.Domain.Foods
     {        
         public Title Title { get; internal set; }
         public byte[] Image { get; internal set; }
+        public HashSet<FoodIngredients.FoodIngredient> Ingredients { get; internal set; }
 
-        private Food() {}
+        private Food() 
+        {
+            Ingredients = new HashSet<FoodIngredients.FoodIngredient>();
+        }
 
         private Food(Title value, byte[] image)
         {
             Title = value;
             Image = image;
+            Ingredients = new HashSet<FoodIngredients.FoodIngredient>();
         }
 
         public static Result Create(string title, byte[] image)

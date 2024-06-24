@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using Food.Application;
+using Food.Application.Interfaces;
 using Food.Persistence.EF;
 
 namespace Ingredient.Api.Configs

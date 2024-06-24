@@ -21,6 +21,9 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
     builder.RegisterModule(new AutofacModule())
 );
 
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(Food.Application.AssemblyReference.assembly));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

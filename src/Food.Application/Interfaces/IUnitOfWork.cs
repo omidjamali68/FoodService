@@ -1,4 +1,4 @@
-﻿namespace Food.Application
+﻿namespace Food.Application.Interfaces
 {
     public interface IUnitOfWork
     {

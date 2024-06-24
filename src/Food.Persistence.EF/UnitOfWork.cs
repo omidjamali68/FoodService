@@ -1,4 +1,4 @@
-﻿using Food.Application;
+﻿using Food.Application.Interfaces;
 
 namespace Food.Persistence.EF
 {

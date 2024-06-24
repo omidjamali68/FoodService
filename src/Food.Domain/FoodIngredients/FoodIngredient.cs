@@ -7,9 +7,9 @@ namespace Food.Domain.FoodIngredients
     {
         private FoodIngredient() {}
 
-        public Guid FoodId { get; internal set; }
-        public Domain.Foods.Food Food { get; internal set; }
-        public int IngredientUnitId { get; internal set; }
-        public Quantity Quantity { get; internal set; }
+        public Guid FoodId { get; private set; }
+        public Domain.Foods.Food Food { get; private set; }
+        public int IngredientUnitId { get; private set; }
+        public Quantity Quantity { get; private set; }
     }
 }

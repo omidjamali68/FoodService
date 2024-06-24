@@ -5,9 +5,9 @@ namespace Food.Domain.Foods
 {
     public class Food : Entity<Guid>
     {        
-        public Title Title { get; internal set; }
-        public byte[] Image { get; internal set; }
-        public HashSet<FoodIngredients.FoodIngredient> Ingredients { get; internal set; }
+        public Title Title { get; private set; }
+        public byte[] Image { get; private set; }
+        public HashSet<FoodIngredients.FoodIngredient> Ingredients { get; private set; }
 
         private Food() 
         {

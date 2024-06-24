@@ -1,5 +1,8 @@
+using Autofac.Extensions.DependencyInjection;
+using Autofac;
 using Food.Persistence.EF;
 using Microsoft.EntityFrameworkCore;
+using Ingredient.Api.Configs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppDbContext>(option =>
     option.UseSqlServer(builder.Configuration["database:connection"]));
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
+    builder.RegisterModule(new AutofacModule())
+);
 
 var app = builder.Build();
 

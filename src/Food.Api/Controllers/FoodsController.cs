@@ -1,5 +1,6 @@
 ﻿using Food.Application.Foods.Commands.Add;
 using Food.Application.Foods.Commands.Add.Dtos;
+using Food.Application.Foods.Queries.GetAll;
 using Food.Domain.SeedWork;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -23,17 +24,10 @@ namespace Food.Api.Controllers
             return await _mediator.Send(new AddFoodCommand(dto.Title, dto.Image, dto.FoodIngredients));
         }
 
-        private async Task<byte[]> FormFileToByteArrayAsync(IFormFile file)
+        [HttpGet]
+        public async Task<Result<GetFoodsResponse>> GetAll(string? search, int page = 1)
         {
-            byte[] fileStream;
-            using (var memoryStream = new MemoryStream())
-            {
-                await file.CopyToAsync(memoryStream);
-                fileStream = memoryStream.ToArray();
-                await memoryStream.FlushAsync();
-            }
-
-            return fileStream;
+            return await _mediator.Send(new GetFoodsQuery(search, page));
         }
     }
 }

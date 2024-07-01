@@ -15,6 +15,10 @@ namespace Food.Persistence.EF.FoodIngredients
                     x => x.Value, 
                     x => Domain.FoodIngredients.ValueObjects.Quantity.Create(x).Value!);
 
+            builder.Property(x => x.IngredientTitle);
+
+            builder.Property(x => x.UnitTitle);
+
             builder.HasOne(x => x.Food)
                 .WithMany(x => x.Ingredients)
                 .HasForeignKey(x => x.FoodId)

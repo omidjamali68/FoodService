@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Food.Application.Interfaces;
 using Food.Persistence.EF;
+using Food.Persistence.EF.Foods;
 
 namespace Ingredient.Api.Configs
 {
@@ -12,10 +13,10 @@ namespace Ingredient.Api.Configs
                     .As<IUnitOfWork>()
                     .InstancePerLifetimeScope();
 
-            //builder.RegisterAssemblyTypes(typeof(UnitRepository).Assembly)
-            //        .AssignableTo<IRepository>()
-            //        .AsImplementedInterfaces()
-            //        .InstancePerLifetimeScope();
+            builder.RegisterAssemblyTypes(typeof(FoodRepository).Assembly)
+                    .AssignableTo<IRepository>()
+                    .AsImplementedInterfaces()
+                    .InstancePerLifetimeScope();
         }
     }
 }

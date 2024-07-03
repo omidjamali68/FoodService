@@ -70,6 +70,15 @@ namespace Food.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} مورد نظر یافت نشد.
+        /// </summary>
+        public static string NotExist {
+            get {
+                return ResourceManager.GetString("NotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to مقدار فیلد {0} را بصورت صحیح وارد کنید.
         /// </summary>
         public static string RegularExpression {

@@ -1,7 +1,7 @@
 ﻿using Food.Application.Foods;
 using Food.Application.Foods.Queries.GetAll;
+using Food.Application.Foods.Queries.GetById;
 using Food.Common;
-using Food.Domain.SeedWork;
 using Microsoft.EntityFrameworkCore;
 
 namespace Food.Persistence.EF.Foods
@@ -20,7 +20,7 @@ namespace Food.Persistence.EF.Foods
             await _context.Foods.AddAsync(food);
         }
 
-        public async Task<Result<GetFoodsResponse>> GetAll(string? searchKey, int page)
+        public async Task<GetFoodsResponse> GetAll(string? searchKey, int page)
         {
             var foods = _context.Foods.AsQueryable();
 
@@ -43,6 +43,27 @@ namespace Food.Persistence.EF.Foods
                 Rows = rows,
                 Data = data
             };
+        }
+
+        public async Task<GetFoodByIdDto?> GetById(Guid id)
+        {
+            return await _context.Foods
+                .Include(x => x.Ingredients)
+                .Select(x => 
+                    new GetFoodByIdDto
+                    {
+                        Id = x.Id,
+                        Title = x.Title.Value,
+                        ingredients = x.Ingredients.Select(i =>
+                            new FoodIngredientDto(
+                                i.IngredientTitle,
+                                i.UnitTitle,
+                                i.Quantity.Value))
+                        .ToHashSet()
+                    })
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == id);
+
         }
     }
 }

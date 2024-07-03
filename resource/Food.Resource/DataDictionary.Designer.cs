@@ -61,6 +61,15 @@ namespace Food.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to غذا.
+        /// </summary>
+        public static string Food {
+            get {
+                return ResourceManager.GetString("Food", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to مقدار مواد اولیه.
         /// </summary>
         public static string Quantity {

@@ -20,6 +20,16 @@ namespace Food.Persistence.EF.Foods
             await _context.Foods.AddAsync(food);
         }
 
+        public void Delete(Domain.Foods.Food food)
+        {
+            _context.Foods.Remove(food);
+        }
+
+        public async Task<Domain.Foods.Food?> FindById(Guid id)
+        {
+            return await _context.Foods.FindAsync(id);
+        }
+
         public async Task<GetFoodsResponse> GetAll(string? searchKey, int page)
         {
             var foods = _context.Foods.AsQueryable();

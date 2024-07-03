@@ -7,6 +7,8 @@ namespace Food.Application.Foods
     public interface IFoodRepository : IRepository
     {
         Task Add(Domain.Foods.Food food);
+        void Delete(Domain.Foods.Food food);
+        Task<Domain.Foods.Food?> FindById(Guid id);
         Task<GetFoodsResponse> GetAll(string? searchKey, int page);
         Task<GetFoodByIdDto?> GetById(Guid id);
     }

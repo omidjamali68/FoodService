@@ -40,5 +40,19 @@ namespace Food.Domain.Foods
 
             return Result.Success();
         }
+
+        public Result Update(string title, string image)
+        {
+            var food = Create(title, image);
+
+            if (food.IsFailure)
+                return food.Error;
+
+            Title = food.Value!.Title;
+            image = food.Value!.Image;
+            Ingredients = new HashSet<FoodIngredients.FoodIngredient>();
+
+            return Result.Success();
+        }
     }
 }

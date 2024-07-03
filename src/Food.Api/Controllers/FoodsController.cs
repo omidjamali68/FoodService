@@ -1,6 +1,7 @@
 ﻿using Food.Application.Foods.Commands.Add;
 using Food.Application.Foods.Commands.Add.Dtos;
 using Food.Application.Foods.Commands.Delete;
+using Food.Application.Foods.Commands.Update;
 using Food.Application.Foods.Queries.GetAll;
 using Food.Application.Foods.Queries.GetById;
 using Food.Domain.SeedWork;
@@ -42,6 +43,12 @@ namespace Food.Api.Controllers
         public async Task<Result> Delete(Guid id)
         {
             return await _mediator.Send(new DeleteFoodCommand(id));
+        }
+
+        [HttpPut("{id}")]
+        public async Task<Result> Update(Guid id, UpdateFoodDto dto)
+        {
+            return await _mediator.Send(new UpdateFoodCommand(id, dto));
         }
     }
 }

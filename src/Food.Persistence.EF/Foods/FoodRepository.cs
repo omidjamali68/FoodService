@@ -27,7 +27,7 @@ namespace Food.Persistence.EF.Foods
 
         public async Task<Domain.Foods.Food?> FindById(Guid id)
         {
-            return await _context.Foods.FindAsync(id);
+            return await _context.Foods.Include(x => x.Ingredients).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<GetFoodsResponse> GetAll(string? searchKey, int page)

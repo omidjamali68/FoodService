@@ -1,4 +1,5 @@
 ﻿using Food.Application.Interfaces;
+using Food.Common;
 using Food.Domain.SeedWork;
 using Food.Domain.UserFoods;
 
@@ -20,6 +21,9 @@ namespace Food.Application.UserFoods.Commands.Add
             var userFood = UserFood.Create(request.NidUser, request.Dto.Title, request.Dto.Image);
             if (userFood.IsFailure)
                 return Result.Failure<Guid>(userFood.Error);
+
+            request.Dto.FoodIngredients.ForEach(i =>
+                userFood.Value!.AddIngredient(i.quantity, i.ingredientUnitId, i.ingredientTitle, i.unitTitle));
 
             await _userFoodRepository.Add(userFood.Value!);
 

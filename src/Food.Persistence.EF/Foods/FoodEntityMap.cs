@@ -14,6 +14,8 @@ namespace Food.Persistence.EF.Foods
 
             builder.Property(x => x.Title)
                 .HasConversion(x => x.Value, x => Domain.ShareKernel.ValueObjects.Title.Create(x).Value!);
+
+            builder.UseTptMappingStrategy();
         }
     }
 }

@@ -5,11 +5,11 @@ namespace Food.Domain.Foods
 {
     public class Food : Entity<Guid>
     {        
-        public Title Title { get; private set; }
-        public string Image { get; private set; }
-        public HashSet<FoodIngredients.FoodIngredient> Ingredients { get; private set; }
+        public Title Title { get; protected set; }
+        public string Image { get; protected set; }
+        public HashSet<FoodIngredients.FoodIngredient> Ingredients { get; protected set; }
 
-        private Food() 
+        protected Food() 
         {
             Ingredients = new HashSet<FoodIngredients.FoodIngredient>();
         }

@@ -15,6 +15,7 @@ namespace Food.Persistence.EF
         }
 
         public DbSet<Domain.Foods.Food> Foods { get; set; }
+        public DbSet<Domain.UserFoods.UserFood> UserFoods { get; set; }
         public DbSet<Domain.FoodIngredients.FoodIngredient> FoodIngredients { get; set; }
     }
 }

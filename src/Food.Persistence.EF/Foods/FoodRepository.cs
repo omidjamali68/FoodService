@@ -32,21 +32,18 @@ namespace Food.Persistence.EF.Foods
 
         public async Task<GetFoodsResponse> GetAll(string? searchKey, int page)
         {
-            var foods = _context.Foods.AsQueryable();
+            var foods = _context.Foods.AsNoTracking();
 
             if (!string.IsNullOrEmpty(searchKey))
             {
                 foods = foods.Where(x => ((string)x.Title).Contains(searchKey));
             }
 
-            var reult = foods.Select(x => new GetFoodsDto
-            {
-                Id = x.Id,
-                Title = x.Title.Value
-            }).AsNoTracking();
+            var result = foods.Select(x => 
+                new GetFoodsDto { Id = x.Id, Image = x.Image, Title = x.Title.Value });
 
             var rows = 0;
-            var data = await reult.ToPaged(page, 20, out rows).ToListAsync();
+            var data = await result.ToPaged(page, 20, out rows).ToListAsync();
 
             return new GetFoodsResponse
             {
